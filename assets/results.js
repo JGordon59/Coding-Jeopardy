@@ -2,7 +2,7 @@
 
 const username = document.querySelector('#username')
 const saveScoreBtn = document.querySelector('#saveScoreBtn')
-const finalScore = document.querySelector('#finalScore')
+const playerScore = document.querySelector('#playerScore')
 var mostRecentTime = localStorage.getItem('recenttime')
 var button = $('button')
 
@@ -10,7 +10,7 @@ const highScores =  JSON.parse(localStorage.getItem('highScores')) || []
 
 
 
-finalScore.innerText = "Your Score Is  " + mostRecentTime
+playerScore.innerText = "Your Score Is  " + mostRecentTime
 
 
 

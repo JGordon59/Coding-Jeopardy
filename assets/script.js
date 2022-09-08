@@ -1,9 +1,9 @@
 const startbutton = document.getElementById('start-btn')
-const questionConEL = document.getElementById('question-container')
+const questionContainer = document.getElementById('question-container')
 const highscore = document.getElementById('highscore')
 const result = document.getElementById('result')
-const questionEL = document.getElementById('question')
-const answerButtonEL = document.getElementById('answer-buttons')
+const triviaEL = document.getElementById('question')
+const choiceButtonEL = document.getElementById('answer-buttons')
 const quizTitle = document.getElementById('QuizTitle')
 let time = 80;
 
@@ -18,17 +18,17 @@ let shuffledQuestions, currentQuestionIndex
 
 
 startbutton.addEventListener("click", startQuiz)
-answerButtonEL.addEventListener("click", () => {
+choiceButtonEL.addEventListener("click", () => {
     currentQuestionIndex++,
     nextQuestion()
 } )
 
 function startQuiz() {
-    console.log('Quiz has Begun')
+    console.log('Welcome to JEOPARDY!')
     startbutton.classList.add('hide')
-    shuffledQuestions= questions.sort(() => Math.random() - .6)
+    shuffledQuestions= trivia.sort(() => Math.random() - .6)
     currentQuestionIndex = 0
-    questionConEL.classList.remove('hide')
+    questionContainer.classList.remove('hide')
     quizTitle.classList.add('hide')
     updatetimerEl()
     nextQuestion()
@@ -58,7 +58,7 @@ function nextQuestion()  {
 }
 
 function showQuestion(question) {
-    questionEL.innerText = question.question
+    triviaEL.innerText = question.question
     question.answers.forEach(answer => {
     var button = document.createElement('button')
     button.innerText = answer.text
@@ -67,13 +67,13 @@ function showQuestion(question) {
         button.dataset.correct = answer.correct
     }
     button.addEventListener('click', selectAnswer)
-    answerButtonEL.appendChild(button)
+    choiceButtonEL.appendChild(button)
     })
 }
 function resetState() {
-    while (answerButtonEL.firstChild) {
-        answerButtonEL.removeChild
-        (answerButtonEL.firstChild)
+    while (choiceButtonEL.firstChild) {
+        choiceButtonEL.removeChild
+        (choiceButtonEL.firstChild)
     }
 
 }
@@ -99,9 +99,9 @@ function selectAnswer(e) {
   function setStatusText(element, correct) {
     if (correct) {
         correct == true
-      element.innerHTML= "Correct!";
+      element.innerHTML= "You got it right!";
     } else {
-      element.innerHTML="Wrong!";
+      element.innerHTML="Wrong, Try Again!";
       time -= 10
 
     }
@@ -116,25 +116,27 @@ function selectAnswer(e) {
   
 
 
-var questions = [
+var trivia = [
     {
-        question: 'What data type can a function return?',
+        
+             question: 'Inside which HTML element do we put the JavaScript?',
         answers: [
-            {text: 'string', correct: false},
-             {text: 'number', correct: false},
-             {text: 'boolean', correct: false},
-             {text: 'all of the above', correct: true}
+            {text: '<script>', correct: true},
+             {text: '<javascript>', correct: false},
+             {text: '<js>', correct: false},
+             {text: 'None of the above', correct: false}
+
 
 ]
 
 
     },
     {
-        question: 'Which of the following keywords is used to define a variable in Javascript?',
+        question: 'Which What is the correct JavaScript syntax to write "Hello World"?',
         answers: [
-            {text: 'var', correct: false},
-             {text: 'let', correct: false},
-             {text: 'Both A and B', correct: true},
+            {text: '"Hello World"', correct: false},
+             {text: 'response.write("Hello World")', correct: false},
+             {text: 'document.write("Hello World")', correct: true},
              {text: 'None of the above', correct: false}
 
 ]
@@ -142,49 +144,47 @@ var questions = [
 
     },
     {
-        question: 'How can a datatype be declared to be a constant type?',
+        question: 'An external JavaScript must contain the <script> tag',
         answers: [
-            {text: 'const', correct: true},
-             {text: 'var', correct: false},
-             {text: 'let', correct: false},
-             {text: 'constant', correct: false}
+            {text: 'False', correct: true},
+             {text: 'True', correct: false},
 
 ]
 
 
     },
     {
-        question: 'How to stop an interval timer in Javascript?',
+        question: 'Where is the correct place to insert a JavaScript?',
         answers: [
-            {text: 'clearInterval', correct: true},
-             {text: 'clearTimer', correct: false},
-             {text: 'intervalOver', correct: false},
-             {text: 'None of the above', correct: false}
+            {text: 'the <body> section', correct: false},
+             {text: 'the <head> section', correct: false},
+             {text: 'None of the Above', correct: false},
+             {text: 'Both the <head> section and the <body> section are correct', correct: true}
+]
+
+
+    },
+    {
+        
+             question: 'What is the correct syntax for referring to an external script called "xxx.js"?',
+        answers: [
+            {text: '<script name="xxx.js">', correct: false},
+             {text: '<script value="xxx.js">', correct: false},
+             {text: '<script src="xxx.js">', correct: true},
+             {text: '<script href="xxx.js">', correct: false}
+
 
 ]
 
 
     },
     {
-        question: 'Which of the following are closures in Javascript?',
+        question: 'How do you create a function?',
         answers: [
-            {text: 'Variables', correct: false},
-             {text: 'All of the above', correct: true},
-             {text: 'Objects', correct: false},
+            {text: 'function:myFunction()', correct: false},
+             {text: 'function myFunction()', correct: true},
+             {text: 'function=myFunction()', correct: false},
              {text: 'Functions', correct: false}
-
-]
-
-
-    },
-    {
-        question: 'Which of the following methods is used to access HTML elements using Javascript?',
-        answers: [
-            {text: 'getElementbyld()', correct: false},
-             {text: 'getElementsByClassName()', correct: false},
-             {text: 'Both A and B', correct: true},
-             {text: 'None of the above', correct: false}
-
 ]
     }
 
